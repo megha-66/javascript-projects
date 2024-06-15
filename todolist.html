@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="Container">
+        <h1 class="row">TO-DO-LIST</h1>
+        <br><br>
+        <div class="row">
+            <form id="todo-form">
+                <div class="input-group">
+                    <input type="text" placeholder="todo-item" id="box" style="width: 30vw">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="button" value="Add" style="width: 10vw" onclick="addItem()">
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <ul id="list_item">
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function addItem() {
+            let item = document.getElementById("box");
+            let list = document.getElementById("list_item");
+
+            if (item.value.trim() !== "") {
+                let li = document.createElement("li");
+                li.appendChild(document.createTextNode(item.value));
+                list.appendChild(li);
+                item.value = ""; // Clear the input field
+
+                li.onclick = function() {
+                    this.parentNode.removeChild(this);
+                };
+            } else {
+                alert("Please add a value to the item!");
+            }
+        }
+
+        // Prevent form submission on button click
+        document.getElementById("todo-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
